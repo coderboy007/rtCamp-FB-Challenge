@@ -207,11 +207,21 @@ $(document).ready(function() {
 //album slider Pure JS Script
 var slideIndex = 1;
 var alb_flag = 0;
+var count = 0;
 showSlides(slideIndex);
 plusSlides(1);
 function plusSlides(n) {
     showSlides(slideIndex += n);
 };
+setInterval(function autoSlider() {
+    var slides = document.getElementsByClassName("mySlides");
+    showSlides(slideIndex = count);
+    count++;
+    if(count > slides.length){
+        slideIndex = 1;
+        count = 1;
+    }
+},5000);
 function showSlides(n) {
     var i;
     var slides = document.getElementsByClassName("mySlides");
