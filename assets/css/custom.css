@@ -1,0 +1,415 @@
+/* include font family */
+
+@font-face {
+    font-family: 'Proxima';
+    src: url(../fonts/ProximaNova-Regular.otf);
+}
+
+@font-face {
+    font-family: 'Proxima Bold';
+    src: url(../fonts/ProximaNova-Bold.otf);
+}
+
+
+/* login.php page css */
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.log-body {
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/pics/background-log.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    margin: 0;
+}
+
+.log-wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.fb-signin {
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #FED149;
+    border-radius: 5px;
+}
+
+.rt-logo {
+    height: 150px;
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+
+/* index.php page css */
+
+.preloader,.alb-preloader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fefefe;
+    z-index: 99;
+    height: 100%;
+    width: 100%;
+}
+
+.load-status,.alb-status {
+    margin: -50px 0 0 -50px;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+.alb-preloader,.alb-status{
+    display: none;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.log-button {
+    color: white;
+    text-decoration: none;
+}
+
+.ad-title {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px #000;
+    text-align: center;
+}
+
+.in-header {
+    text-align: center;
+    min-height: 300px;
+    overflow: hidden;
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 25px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/pics/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.in-header img {
+    display: inline-block !important;
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    border: 5px solid #fff;
+}
+
+.photo-section .row:last-child{
+    padding-top: 25px !important;
+    margin-bottom: 70px;
+}
+
+.album-div>div.gallery {
+    background-color: #FED149;
+    padding-left: 10px;
+    margin-top: 30px;
+}
+
+.zip-process-bar{
+    background-color: #F57153;
+    border-radius: 10px;
+    opacity: 0;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    font-size: 17px;
+}
+
+.zip-process-bar img{
+    height: 50px;
+    width: 50px;
+    margin: 0px 10px 0px -15px;
+}
+
+.overlay-closebtn{
+    opacity: 0;
+}
+
+.dwn-zip{
+    top: 50%;
+    right: 45%;
+    position: fixed;
+}
+
+.in-footer {
+    background-color: #FED149;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-top: 25px;
+    text-align: center;
+}
+
+.in-footer p {
+    color: #FFFFFF;
+    left: 50%;
+    top: 50%;
+    margin-top: -14px;
+}
+
+.scroll-top {
+    background-color: #F57153;
+    border-radius: 100px;
+    width: 34px;
+    height: 34px;
+    left: 50%;
+    top: 50%;
+    margin-top: -26px;
+    margin-left: -46px;
+}
+
+span.count {
+    top: 18px;
+    left: 10px;
+    float: right;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 12px;
+    padding-top: 2px;
+    position: relative;
+    bottom: 10px;
+    background-color: #F57153;
+    color: #FFFFFF;
+}
+
+.gallery img {
+    margin-left: -6px;
+}
+
+.gallery .desc {
+    font-size: 20px;
+    text-align: center;
+}
+
+.overlay , .overlay-process{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content,.overlay-content-process {
+    position: relative;
+    /*top: 25%;*/
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a, .overlay-process .overlay-closebtn {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus, .overlay-process .overlay-closebtn:hover, .overlay-process .overlay-closebtn:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn, .overlay-process .overlay-closebtn {
+    z-index: 99;
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+.mySlides {
+    display: none
+}
+.mySlides img {
+    width: 100%;
+    vertical-align: middle;
+    max-height: 600px;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+div.alb-action{
+    margin-top: 5px;
+
+}
+div.alb-action div{
+    text-align: center;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+input[type="checkbox"]+span {
+    font-size: 15px;
+    color: #000;
+}
+input[type="checkbox"]+span:before {
+    font: 16pt FontAwesome;
+    content: '\00f096';
+    display: inline-block;
+    width: 16pt;
+    padding: 2px 0 0 3px;
+    margin-right: 0.5em;
+}
+input[type="checkbox"]:checked+span:before {
+    content: '\00f046';
+}
+input[type="checkbox"]:focus+span:before {
+    outline: 1px dotted #aaa;
+}
+
+button.download-alb-btn{
+    float: right;
+}
+
+.div-action{
+    text-align: center;
+    padding: 10px;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Fading animation */
+.fade {
+    opacity: 1;
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .prev, .next,.text {font-size: 11px}
+}
+
+/* media query css */
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 480px) {
+    .in-header h1 {
+        font-size: 30px;
+    }
+    .gallery img {
+        margin-top: -25px;
+    }
+    span.count {
+        top: -9px;
+    }
+    .overlay a, .overlay-process .overlay-closebtn {font-size: 20px}
+    .overlay .closebtn, .overlay-process .overlay-closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+    .overlay-content {
+        top:25%;
+    }
+    button.download-alb-btn {
+        float: left;
+    }
+    div.alb-action {
+        margin-bottom: 50px;
+    }
+    .btn-action {
+        margin-top: 10px;
+    }
+    .dwn-zip {
+        margin-right: -20%;
+    }
+}

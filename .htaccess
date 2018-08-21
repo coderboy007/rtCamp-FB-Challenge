@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+
+	# class method directly access using url like api
+	RewriteCond $1 !^(FBMethods\.php|GDMethods\.php|index\.php|login\.php|ajax\.php|assets|lib|tests|robots\.txt|policy\.php|$)
+	RewriteRule ^(.*)$ FBMethods.php [QSA,NC,L]
+
+	# if direct access assets folder to forbidden error
+	RewriteCond %{THE_REQUEST} /assets [NC]
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteRule . - [F]
+</IfModule>
