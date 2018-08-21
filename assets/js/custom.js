@@ -1,7 +1,5 @@
 //preloader
 $(window).on('load', function() {
-    //$("#status").fadeOut();
-    //$("#preloader").delay(1000).fadeOut("slow");
     $(".load-status").fadeOut();
     $(".preloader").delay(1000).fadeOut("slow");
 });
@@ -51,34 +49,10 @@ $(document).ready(function() {
             type : 'POST',
             data : {"method":"getAlbumImages","albumId":albumId},
             success : function(data) {
-                //console.log(data);
                 $(".alb-status").fadeOut();
                 $(".alb-preloader").fadeOut("slow");
                 $(".alb-images-slider").html(data);
                 $(".mySlides").first().css( "display", "block" );
-
-                //auto album slider Pure JS Script
-                /*var slideIndex = 0;
-                plusSlides();
-                function plusSlides() {
-                    setInterval(function() {
-                        showSlides(slideIndex += 1);
-                    }, 3000);
-                };
-                function showSlides(n) {
-                    var i;
-                    var slides = document.getElementsByClassName("mySlides");
-                    var caption = document.getElementsByClassName("text");
-                    if (n > slides.length) {slideIndex = 1}
-                    if (n < 1) {slideIndex = slides.length}
-                    for (i = 0; i < slides.length; i++) {
-                        slides[i].style.display = "none";
-                    }
-                    slides[slideIndex - 1].style.display = "block";
-                    if (caption[slideIndex - 1].textContent.length > 1) {
-                        caption[slideIndex - 1].style.backgroundColor = "black";
-                    }
-                };*/
             }
         });
     });
@@ -111,8 +85,6 @@ $(document).ready(function() {
                 alb_arr[key++] = this.value;
             });
         }
-        //console.log(downloadType);
-        //console.log(JSON.stringify(alb_arr));
         $.ajax({
             url : 'ajax.php',
             type : 'POST',
