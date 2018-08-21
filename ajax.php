@@ -76,7 +76,7 @@ if(!empty($_POST['method'])){
    }elseif ($_POST['method'] =="AlbumMoveToDrive"){
        $albumsId = json_decode($_POST['albumsId']);
        if(!empty($albumsId)){
-            print_r($albumsId);
+           $FBmethods->albumMoveToDrive($albumsId);
        }
    }
    else{

@@ -127,6 +127,7 @@ class FBmethods{
             $fbalbums = $graphObject->getProperty('albums'); // To Get Facebook user Albums
             /* ---- fbId Stored Into Session -----*/
             $_SESSION['fb_user']['FBID'] = $fbId;
+            $_SESSION['fb_user']['FBFullName'] = $fbFullName;
 
             $ResponseData['FBID'] = $fbId;
             $ResponseData['FBFullName'] = $fbFullName;
@@ -157,8 +158,43 @@ class FBmethods{
         }
     }
 
-    public function albumMoveToDrive(){
+    public function albumMoveToDrive($albumsId){
+        $UserName = $this->globalfunctions->StrRegularExp($_SESSION['fb_user']['FBFullName']);
+        $ParentFolder = "facebook_".$UserName."_albums";
+        /*Make Parent folder in google drive */
+        $this->client->setAccessToken($_SESSION['google_user']['gd_access_token']);
+        $drive = new Google_Service_Drive($this->client);
+        $fileMetadata = new Google_Service_Drive_DriveFile(array(
+            'name' => $ParentFolder,
+            'mimeType' => 'application/vnd.google-apps.folder'));
+        $ParentFolderID = $drive->files->create($fileMetadata, array('fields' => 'id'));
 
+        foreach ($albumsId as $key => $value){
+            $albumsDatas = explode(',',$value);
+            $albumId = $albumsDatas[0];
+            $albumName = $albumsDatas[1];
+            $fileMetadata = new Google_Service_Drive_DriveFile(array(
+                'name' => $albumName,
+                'mimeType' => 'application/vnd.google-apps.folder',
+                'parents' => array($ParentFolderID->id)
+            ));
+            $ChildFolderID = $drive->files->create($fileMetadata, array('fields' => 'id'));
+            $graphEdge = $this->getAlbumData($albumId);
+            $i = 0;
+            foreach ($graphEdge as $graphNode) {
+                $photoUrl=$graphNode['images'][0]['source'];
+                $fileMetadata = new Google_Service_Drive_DriveFile(array(
+                    'name' => 'img'.$i.'jpg',
+                    'parents' => array($ChildFolderID->id)
+                ));
+                $file = $drive->files->create($fileMetadata, array(
+                    'data' => file_get_contents($photoUrl),
+                    'mimeType' => 'image/jpeg',
+                    'uploadType' => 'multipart',
+                    'fields' => 'id'));
+                $i++;
+            }
+        }
     }
 
     private function MyTest(){

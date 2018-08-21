@@ -179,6 +179,7 @@ $(document).ready(function() {
                     $(".overlay-process").css("width", "100%");
                     $(".zip-process-bar").css("opacity", "1");
                     $(".overlay-closebtn").css("opacity", "0");
+                    $(".zip-process-bar span").text("Moving process may take time.");
                     $.ajax({
                         url : 'ajax.php',
                         type : 'POST',
@@ -186,6 +187,7 @@ $(document).ready(function() {
                         success : function(data) {
                             $(".zip-process-bar").css("opacity", "0");
                             $(".overlay-closebtn").css("opacity", "1");
+                            $(".overlay-process").css("width", "0%");
                         }
                     });
                     localStorage.alb_arr = [];

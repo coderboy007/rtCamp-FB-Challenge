@@ -20,6 +20,10 @@ class GlobalFunctions{
         }
     }
 
+    function StrRegularExp($str){
+        return preg_replace("/[^a-zA-Z]+/", "", $str);
+    }
+
     function zippingProcess($source, $destination) {
         if (!extension_loaded('zip') || !file_exists($source)) {
             return false;

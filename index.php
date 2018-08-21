@@ -106,7 +106,7 @@ $UserProfile = $FBMethods->UserProfile(); //Get FB User Profile
     <a href="javascript:void(0)" class="overlay-closebtn">×</a>
     <div class="overlay-content-process">
         <div class="col-md-3 col-sm-12 zip-process-bar">
-            <img src="assets/images/pics/zipprocess.gif">Download process may take time.
+            <img src="assets/images/pics/zipprocess.gif"><span>Download process may take time.</span>
         </div>
     </div>
 </div>
