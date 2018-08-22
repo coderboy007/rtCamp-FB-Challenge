@@ -191,7 +191,7 @@ setInterval(function autoSlider() {
     count++;
     if(count > slides.length){
         slideIndex = 1;
-        count = 1;
+        count = 0;
     }
 },5000);
 function showSlides(n) {
