@@ -52,8 +52,8 @@ $UserProfile = $FBMethods->UserProfile(); //Get FB User Profile
 <div class="container photo-section">
 	<div class="row">
 		<div class="col-md-12 col-sm-12">
-            <?php 
-            if(count($UserProfile['FBAlbums']) > 0){ 
+            <?php
+            if(!empty($UserProfile['FBAlbums'])&& count($UserProfile['FBAlbums']) > 0){
                 foreach($UserProfile['FBAlbums'] as $alb_val){
             ?>
                 <div class="col-md-4 col-sm-12 album-div">
