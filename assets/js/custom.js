@@ -72,6 +72,7 @@ $(document).ready(function() {
         $(".overlay-process").css("width", "100%");
         $(".zip-process-bar").css("opacity", "1");
         $(".overlay-closebtn").css("opacity", "0");
+        $(".zip-process-bar span").text("Download process may take time.");
         var alb_arr = {};
         var key = 0;
         if(downloadType == 1){ //Download selected album
