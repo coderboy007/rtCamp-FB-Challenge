@@ -13,9 +13,9 @@ class FBmethods{
 
     // Declared Constant Variables.
     // Replace {app-id} with your app id
-    const app_id = '2068004790005880';
+    const app_id = 'xxxxxxxx';
     // Replace {app-secret} with your app secret
-    const app_secret = 'd22d243f5215f0ca17df0c91f6b32581';
+    const app_secret = 'xxxxxxxxxxxxxxxxx';
 
     public function __construct(){
         //set ini settings value
@@ -47,16 +47,6 @@ class FBmethods{
         return $data;
     }
 
-    /*public function GoogleClient(){
-        $client = new Google_Client();
-        $client->setAuthConfig('client_secret.json');
-        $client->setAccessType("offline");
-        if(empty($_SESSION['google_user']['gd_access_token'])) {
-            $client->setRedirectUri($this->globalfunctions->home_url() . "/FBmethods/googleLogin");
-        }
-        $client->addScope(Google_Service_Drive::DRIVE_METADATA_READONLY);
-    }*/
-
     public function processFunc(){
         $REQUEST_URI = $_SERVER['REQUEST_URI'];
         $REQUEST_URI_array = explode('?',$REQUEST_URI); //explode with ? mark
@@ -71,7 +61,7 @@ class FBmethods{
     public function getLoginURL(){
         $FBHelperData = $this->FBHelper();
         $helper = $FBHelperData['helper'];
-        $permissions = ['email']; // Optional permissions
+        $permissions = ['email','public_profile','user_photos']; // Optional permissions
         $actual_link = $this->globalfunctions->home_url()."/FBmethods/getLoginToken";
         return $loginUrl = $helper->getLoginUrl($actual_link, $permissions);
     }
