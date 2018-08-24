@@ -13,7 +13,7 @@ class FBmethods{
 
     // Declared Constant Variables.
     // Replace {app-id} with your app id
-    const app_id = 'xxxxxxxx';
+    const app_id = 'xxxxxxxxxxxxx';
     // Replace {app-secret} with your app secret
     const app_secret = 'xxxxxxxxxxxxxxxxx';
 
@@ -67,6 +67,9 @@ class FBmethods{
     }
 
     public function getLoginToken(){
+        if(!empty($_GET['error_code'])){
+            header("Location: ../index.php");
+        }
         $FBHelperData = $this->FBHelper();
         $helper = $FBHelperData['helper'];
         $accessToken = $helper->getAccessToken();
