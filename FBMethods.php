@@ -13,9 +13,9 @@ class FBmethods{
 
     // Declared Constant Variables.
     // Replace {app-id} with your app id
-    const app_id = 'xxxxxxxxxxxxx';
+    const app_id = 'XXXXXXXXXXXX';
     // Replace {app-secret} with your app secret
-    const app_secret = 'xxxxxxxxxxxxxxxxx';
+    const app_secret = 'XXXXXXXXXXXXXXXX';
 
     public function __construct(){
         //set ini settings value
