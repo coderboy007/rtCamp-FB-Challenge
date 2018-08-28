@@ -93,7 +93,7 @@ class FBmethods {
         $_SESSION['fb_user']['fb_access_token'] = (string) $accessToken;
         if (isset($accessToken)) {
             header("Location: ../index.php");
-        }else {
+        } else {
             $loginUrl = $helper->getLoginUrl();
             header("Location: ".$loginUrl);
         }
@@ -142,7 +142,7 @@ class FBmethods {
         if (!isset($_GET['code'])) {
             $auth_url = $this->client->createAuthUrl();
             header('Location: '.filter_var($auth_url, FILTER_SANITIZE_URL));
-        }else {
+        } else {
             $this->client->authenticate($_GET['code']);
             $token_array = $this->client->getAccessToken();
             $_SESSION['google_user']['gd_access_token'] = $token_array['access_token'];
