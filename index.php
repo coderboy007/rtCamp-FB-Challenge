@@ -1,8 +1,8 @@
 <?php
-if(!session_id()) {
+if (!session_id()) {
     session_start();
 }
-if(!isset($_SESSION['fb_user']['fb_access_token']) && empty($_SESSION['fb_user']['fb_access_token'])){
+if (!isset($_SESSION['fb_user']['fb_access_token']) && empty($_SESSION['fb_user']['fb_access_token'])) {
     header("Location: login.php");
 }
 //Include & Initialize FBMethods function file.
@@ -41,8 +41,8 @@ $UserProfile = $FBMethods->UserProfile(); //Get FB User Profile
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
-				<img src="<?php echo $UserProfile['FBProImage'];  ?>" class="img-responsive img-circle" alt="<?php echo $UserProfile['FBID'];  ?>">
-				<h1 class="ad-title"><?php echo $UserProfile['FBFullName'];  ?> &nbsp;<a href="<?php echo $globfun->home_url().'/FBmethods/LogOut' ?>" class="log-button" role="button" data-toggle="tooltip" title="Logout"><i class="fa fa-sign-out"></i></a></h1>
+				<img src="<?php echo $UserProfile['FBProImage']; ?>" class="img-responsive img-circle" alt="<?php echo $UserProfile['FBID']; ?>">
+				<h1 class="ad-title"><?php echo $UserProfile['FBFullName']; ?> &nbsp;<a href="<?php echo $globfun->home_url().'/FBmethods/LogOut' ?>" class="log-button" role="button" data-toggle="tooltip" title="Logout"><i class="fa fa-sign-out"></i></a></h1>
 			</div>
 		</div>
 	</div>
@@ -53,14 +53,14 @@ $UserProfile = $FBMethods->UserProfile(); //Get FB User Profile
 	<div class="row">
 		<div class="col-md-12 col-sm-12">
             <?php
-            if(!empty($UserProfile['FBAlbums'])&& count($UserProfile['FBAlbums']) > 0){
-                foreach($UserProfile['FBAlbums'] as $alb_val){
+            if (!empty($UserProfile['FBAlbums']) && count($UserProfile['FBAlbums']) > 0) {
+                foreach ($UserProfile['FBAlbums'] as $alb_val) {
             ?>
                 <div class="col-md-4 col-sm-12 album-div">
                     <span class="count"><?php echo $alb_val['count']; ?></span>
                     <div class="gallery usr-alb" alb-id="<?php echo $alb_val['id']; ?>">
                         <img src="<?php echo $alb_val['picture']['url']; ?>"  width="100%" height="185">
-                        <div class="desc"><?php echo $globfun->content_substr($alb_val['name'],27); ?></div>
+                        <div class="desc"><?php echo $globfun->content_substr($alb_val['name'], 27); ?></div>
                     </div>
                     <div class="col-md-12 col-sm-12 alb-action">
                         <div class="col-md-2"><label><input type="checkbox" name="slct-alb" class="ischecked" value="<?php echo $alb_val['id'].','.$alb_val['name']; ?>"><span data-toggle="tooltip" title="Select Album"></span></label></div>
@@ -70,7 +70,7 @@ $UserProfile = $FBMethods->UserProfile(); //Get FB User Profile
                 </div>
             <?php 
                 }
-            }else{
+            }else {
             ?>
                 <div class="col-md-12 col-sm-12 album-div"><div>User Albums Not Found.</div></div>
             <?php 
