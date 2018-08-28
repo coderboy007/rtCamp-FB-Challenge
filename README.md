@@ -1,3 +1,4 @@
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/coderboy007/rtCamp-FB-Challenge/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/coderboy007/rtCamp-FB-Challenge/?branch=master)
 # Facebook-Photos Challenge
 
 Application Demo Link - https://photoprimes.com
