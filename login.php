@@ -1,8 +1,8 @@
 <?php
-if(!session_id()) {
+if (!session_id()) {
     session_start();
 }
-if(isset($_SESSION['fb_user']['fb_access_token']) && !empty($_SESSION['fb_user']['fb_access_token'])){
+if (isset($_SESSION['fb_user']['fb_access_token']) && !empty($_SESSION['fb_user']['fb_access_token'])) {
     header("Location: index.php");
 }
 //Include & Initialize FBMethods function file.
