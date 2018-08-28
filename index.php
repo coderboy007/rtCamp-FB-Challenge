@@ -70,7 +70,7 @@ $UserProfile = $FBMethods->UserProfile(); //Get FB User Profile
                 </div>
             <?php 
                 }
-            }else {
+            } else {
             ?>
                 <div class="col-md-12 col-sm-12 album-div"><div>User Albums Not Found.</div></div>
             <?php 

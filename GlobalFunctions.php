@@ -15,7 +15,7 @@ class GlobalFunctions {
         
         if (in_array($_SERVER['REMOTE_ADDR'], $localhost)) {
             return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === "on" ? "https" : "http")."://$_SERVER[HTTP_HOST]/rt/facebook";
-        }else {
+        } else {
             return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === "on" ? "https" : "http")."://$_SERVER[HTTP_HOST]";
         }
     }
@@ -40,19 +40,18 @@ class GlobalFunctions {
             {
                 $file = str_replace('\\', '/', $file);
                 // Ignore "." and ".." folders
-                if (in_array(substr($file, strrpos($file, '/')+1), array('.', '..')))
-                    continue;
+                if (in_array(substr($file, strrpos($file, '/')+1), array('.', '..'))) {
+                                    continue;
+                }
                 if (is_dir($file) === true)
                 {
                     $zip->addEmptyDir(str_replace($source.'/', '', $file.'/'));
-                }
-                else if (is_file($file) === true)
+                } else if (is_file($file) === true)
                 {
                     $zip->addFromString(str_replace($source.'/', '', $file), file_get_contents($file));
                 }
             }
-        }
-        else if (is_file($source) === true)
+        } else if (is_file($source) === true)
         {
             $zip->addFromString(basename($source), file_get_contents($source));
         }
@@ -63,7 +62,7 @@ class GlobalFunctions {
         foreach (glob($dirpath.'/'.'*') as $file) {
             if (is_dir($file)) {
                 $this->removeDir($file);
-            }else {
+            } else {
                 @unlink($file);
             }
         }
