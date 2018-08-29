@@ -5,6 +5,7 @@ $(window).on('load', function() {
 });
 $(document).ready(function() {
     //google login after storing the data and that data fill up when page is ready.
+    /** global: localStorage */
     if(typeof localStorage.alb_arr !== 'undefined'){
         if(localStorage.alb_arr.length > 0) {
             var ls_alb_obj = jQuery.parseJSON(localStorage.alb_arr);
@@ -75,13 +76,13 @@ $(document).ready(function() {
         $(".zip-process-bar span").text("Download process may take time.");
         var alb_arr = {};
         var key = 0;
-        if(downloadType == 1){ //Download selected album
+        if(downloadType === '1'){ //Download selected album
             alb_arr[0] = $(this).attr('alb-id');
-        }else if(downloadType == 2){ //Download selected album
+        }else if(downloadType === '2'){ //Download selected album
             $('input[name="slct-alb"]:checked').each(function() {
                 alb_arr[key++] = this.value;
             });
-        }else if(downloadType == 3){ //Download all album
+        }else if(downloadType === '3'){ //Download all album
             $('input[name="slct-alb"]').each(function() {
                 alb_arr[key++] = this.value;
             });
@@ -104,7 +105,7 @@ $(document).ready(function() {
             url : 'ajax.php',
             type : 'POST',
             data : {"method":"deleteZipAndDir"},
-            success : function(data) {
+            success : function() {
                 $(".overlay-process").css("width", "0%");
                 $(".dwn-zip").css("opacity", "0");
             }
@@ -117,17 +118,18 @@ $(document).ready(function() {
         var downloadType = $(this).attr('move_type');
         var alb_arr = {};
         var key = 0;
-        if(downloadType == 1){ //Move selected album
+        if(downloadType === '1'){ //Move selected album
             alb_arr[0] = $(this).attr('alb-id');
-        }else if(downloadType == 2){ //Move selected album
+        }else if(downloadType === '2'){ //Move selected album
             $('input[name="slct-alb"]:checked').each(function() {
                 alb_arr[key++] = this.value;
             });
-        }else if(downloadType == 3){ //Move all album
+        }else if(downloadType === '3'){ //Move all album
             $('input[name="slct-alb"]').each(function() {
                 alb_arr[key++] = this.value;
             });
         }
+        /** global: localStorage */
         localStorage.alb_arr =  JSON.stringify(alb_arr);
         $.ajax({
             url : 'ajax.php',
@@ -163,6 +165,7 @@ $(document).ready(function() {
                             $(".overlay-process").css("width", "0%");
                         }
                     });
+                    /** global: localStorage */
                     localStorage.alb_arr = [];
                 }
             }
