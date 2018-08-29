@@ -1,7 +1,8 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/coderboy007/rtCamp-FB-Challenge/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/coderboy007/rtCamp-FB-Challenge/?branch=master) [![Code Intelligence Status](https://scrutinizer-ci.com/g/coderboy007/rtCamp-FB-Challenge/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence) [![Build Status](https://scrutinizer-ci.com/g/coderboy007/rtCamp-FB-Challenge/badges/build.png?b=master)](https://scrutinizer-ci.com/g/coderboy007/rtCamp-FB-Challenge/build-status/master)
 # Facebook-Photos Challenge
 
-Application Demo Link - https://photoprimes.com
+Application Demo Link - https://photoprimes.com [nginx+ shared hosting, so can't manage .config file of nginix server]
+                        https://photoprimes.000webhostapp.com [Working Perfectly]
 
 Platform - PHP
 
