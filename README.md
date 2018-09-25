@@ -2,14 +2,17 @@
 # Facebook-Photos Challenge
 
 Application Demo Link - 
-> https://photoprimes.com [nginx+ shared hosting, so can't manage .config file of nginix server]
-> https://photoprimes.000webhostapp.com [Working Perfectly]
+> https://photoprimes.tk
 
 Platform - PHP
 
 API Used - [Facebook Graph API SDK for PHP](https://github.com/facebook/php-graph-sdk), [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client), [PHPUnit – The PHP Testing Framework](https://phpunit.de/)
 
-Scripting Language : jQuery, AJAX
+PHP Extention -  [Gearman](http://gearman.org/)
+
+Unix Libraries - [Supervisor](http://supervisord.org/)
+
+Scripting Language - jQuery, AJAX
 
 Styling -  Bootstrap CSS
 
@@ -36,6 +39,67 @@ During the time the Zip and download process is going on, the user will be shown
 The user can also move his/her albums to their respective Google Drive as well.
 
 ## How-To-Use :
+
+**Setup Gearman & Supervisor :**
+
+   install Gearman 
+    
+    sudo apt-get install gearman-job-server
+    sudo apt-get install libgearman-dev
+    sudo apt-get install libgearman7
+    //apt install php7.0-dev
+    
+    
+    wget https://github.com/wcgallego/pecl-gearman/archive/master.zip
+    unzip master.zip
+    cd pecl-gearman-master
+    phpize
+    ./configure
+    make install
+    echo "extension=gearman.so" > /etc/php/7.0/mods-available/gearman.ini
+    phpenmod -v ALL -s ALL gearman
+    service php7.0-fpm restart
+
+  install supervisor
+    
+    apt-get install supervisor
+    service supervisor restart
+    
+Once Gearman & Supervisor setup successfully after configure gearman worker for daemon process.
+
+worker.conf file put into /etc/supervisor/conf.d/worker.conf and you can also rename this .conf file with any name.
+
+    [program:gearman-worker]
+    command=php Background.php
+    process_name=%(program_name)s%(process_num)02d    ; process_name expr (default %(program_name)s)
+    numprocs=3                    ; number of processes copies to start (def 1)
+    ;directory=/tmp                ; directory to cwd to before exec (def no cwd)
+    ;umask=022                     ; umask for process (default None)
+    ;priority=999                  ; the relative start priority (default 999)
+    autostart=true                ; start at supervisord start (default: true)
+    autorestart=true        ; whether/when to restart (default: unexpected)
+    ;startsecs=1                   ; number of secs prog must stay running (def. 1)
+    ;startretries=3                ; max # of serial start failures (default 3)
+    ;exitcodes=0,2                 ; 'expected' exit codes for process (default 0,2)
+    ;stopsignal=QUIT               ; signal used to kill process (default TERM)
+    ;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)
+    ;stopasgroup=false             ; send stop signal to the UNIX process group (default false)
+    ;killasgroup=false             ; SIGKILL the UNIX process group (def false)
+    user=root                   ; setuid to this UNIX account to run the program
+    ;redirect_stderr=true          ; redirect proc stderr to stdout (default false)
+    stdout_logfile=/worker/worker_stdout.log        ; stdout log path, NONE for none; default AUTO
+    stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+    stdout_logfile_backups=10     ; # of stdout logfile backups (default 10)
+    ;stdout_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
+    ;stdout_events_enabled=false   ; emit events on stdout writes (default false)
+    stderr_logfile=/worker/woker_stderr.log        ; stderr log path, NONE for none; default AUTO
+    stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+    stderr_logfile_backups=10     ; # of stderr logfile backups (default 10)
+    ;stderr_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)
+    ;stderr_events_enabled=false   ; emit events on stderr writes (default false)
+    ;environment=A="1",B="2"       ; process environment additions (def no adds)
+    ;serverurl=AUTO                ; override serverurl computation (childutils)
+
 
 **Using the Facebook Graph API SDK for PHP :**
 
