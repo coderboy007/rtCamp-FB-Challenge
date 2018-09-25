@@ -54,6 +54,16 @@ $(document).ready(function() {
                 $(".alb-preloader").fadeOut("slow");
                 $(".alb-images-slider").html(data);
                 $(".mySlides").first().css( "display", "block" );
+                showSlides(slideIndex);
+                interval = setInterval(function autoSlider() {
+                    var slides = document.getElementsByClassName("mySlides");
+                    showSlides(slideIndex = count);
+                    count++;
+                    if(count > slides.length){
+                        slideIndex = 1;
+                        count = 1;
+                    }
+                },5000);
             }
         });
     });
@@ -135,6 +145,8 @@ $(document).ready(function() {
             url : 'ajax.php',
             type : 'POST',
             data : {"method":"isGoogleLogin"},
+            timeout: 3600000,
+            error : function(jqXHR, textStatus, errorThrown) {},
             success : function(data) {
                 if(data != 1){
                     //if user is not Logged In
@@ -159,6 +171,13 @@ $(document).ready(function() {
                         url : 'ajax.php',
                         type : 'POST',
                         data : {"method":"AlbumMoveToDrive","albumsId":JSON.stringify(alb_arr)},
+                        timeout: 3600000,
+                        error : function(jqXHR, textStatus, errorThrown) {
+                            if(textStatus=="error") {
+                                $(".overlay-closebtn").css("opacity", "1");
+                                $(".zip-process-bar span").text("Please wait 10 to 15 minutes.");
+                            }
+                        },
                         success : function(data) {
                             $(".zip-process-bar").css("opacity", "0");
                             $(".overlay-closebtn").css("opacity", "1");
@@ -177,27 +196,29 @@ $(document).ready(function() {
         $(".overlay").css("width", "0%");
         $(".alb-status").fadeOut();
         $(".alb-preloader").fadeOut("slow");
+        clearInterval(interval);
+        slideIndex = 1;
+        count = 2;
+    });
+
+    //close process bar
+    $(".overlay-closebtn").click(function () {
+        $(".zip-process-bar").css("opacity", "0");
+        $(".overlay-process").css("width", "0%");
     });
 });
 
 //album slider Pure JS Script
+var interval = null;
 var slideIndex = 1;
-var alb_flag = 0;
-var count = 0;
-showSlides(slideIndex);
-plusSlides(1);
+var count = 2;
+
 function plusSlides(n) {
-    showSlides(slideIndex += n);
+    var slide_number = slideIndex += n;
+    showSlides(slide_number);
+    count = slide_number;
 };
-setInterval(function autoSlider() {
-    var slides = document.getElementsByClassName("mySlides");
-    showSlides(slideIndex = count);
-    count++;
-    if(count > slides.length){
-        slideIndex = 1;
-        count = 0;
-    }
-},5000);
+
 function showSlides(n) {
     var i;
     var slides = document.getElementsByClassName("mySlides");
@@ -207,11 +228,9 @@ function showSlides(n) {
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
-    if((alb_flag == 1) || (slideIndex - 1 > 0)) {
-        slides[slideIndex - 1].style.display = "block";
-        if (caption[slideIndex - 1].textContent.length > 1) {
-            caption[slideIndex - 1].style.backgroundColor = "black";
-        }
-        alb_flag = 1;
+
+    slides[slideIndex - 1].style.display = "block";
+    if (caption[slideIndex - 1].textContent.length > 1) {
+        caption[slideIndex - 1].style.backgroundColor = "black";
     }
 };

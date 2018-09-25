@@ -2,7 +2,7 @@
     RewriteEngine on
 
 	# class method directly access using url like api
-	RewriteCond $1 !^(FBMethods\.php|GDMethods\.php|index\.php|login\.php|ajax\.php|assets|lib|tests|robots\.txt|policy\.php|$)
+	RewriteCond $1 !^(FBMethods\.php|Background\.php|Lib_gearman\.php|index\.php|login\.php|ajax\.php|assets|worker|lib|tests|robots\.txt|policy\.php|adee\.php|$)
 	RewriteRule ^(.*)$ FBMethods.php [QSA,NC,L]
 
 	# if direct access assets folder to forbidden error
